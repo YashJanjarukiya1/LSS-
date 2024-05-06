@@ -1,0 +1,1 @@
+sort -M ten.txt
