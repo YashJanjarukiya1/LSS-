@@ -1,0 +1,579 @@
+Q-1 Write a shell script to remove the zero sized file.
+------------------------------------------------------
+
+
+As1)
+
+#! /bin/bash
+
+# Taking directory name as input from user
+echo "Enter name of the directory : "
+read directory_name
+
+# If directory exists it will print
+# Directory exits
+# and remove the zero-sized files.
+# Or if directory doesn't exists it will print
+# Directory does not exists.
+
+if [ -d "$directory_name" ];
+then
+    echo "Directory exist"
+        for i in `find $directory_name -size 0`
+        do
+            echo "$i is a Zero-sized file Successfully deleted"
+            rm $i
+        done
+else
+    echo "Directory does not exist"
+fi
+
+output :
+
+darshan@darshan-Swift-SF314-43:~/Desktop$ cd Darshan
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ touch one.c A.txt B.doc C.dtd two.cpp
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ ls
+A.txt  B.doc  C.dtd  one.c  two.cpp
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ cd ..
+darshan@darshan-Swift-SF314-43:~/Desktop$ nano As1.sh
+darshan@darshan-Swift-SF314-43:~/Desktop$ sh As1.sh
+Enter name of the directory : 
+Darshan
+Directory exist
+Darshan/A.txt is a Zero-sized file Successfully deleted
+Darshan/C.dtd is a Zero-sized file Successfully deleted
+Darshan/one.c is a Zero-sized file Successfully deleted
+Darshan/B.doc is a Zero-sized file Successfully deleted
+Darshan/two.cpp is a Zero-sized file Successfully deleted
+darshan@darshan-Swift-SF314-43:~/Desktop$ 
+
+________________________________________________________
+
+
+Q-2 Write a shell script to execute following commands
+• Give an example of : To execute commands together without affecting result of
+each other.
+• How to print “this is
+a three –line
+Text message”
+• Which command display version of the UNIX?
+• How would u get online help of cat command?
+-------------------------------------------------
+
+
+As2)
+
+-> nano As2.sh file
+                                              
+#!/bin/sh
+echo "this is
+a three –line
+Text message"
+
+
+output :
+
+Ans.1) To execute commands together without affecting result of each other.
+
+darshan@darshan-Swift-SF314-43:~/Desktop$ cd Darshan;ls -al As1.sh _one.txt
+-rw-rw-r-- 1 darshan darshan 533 Jan  5 12:35 As1.sh
+-rw-rw-r-- 1 darshan darshan  25 Jan  5 15:42 _one.txt
+
+Ans.2) How to print “this is
+a three –line
+Text message”
+
+1st way..
+
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ nano As2.sh
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ sh As2.sh
+this is
+a three –line
+Text message
+
+2nd way..
+
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ echo "this is
+a three-line
+Text message"
+this is
+a three-line
+Text message
+
+
+Ans.3) version of the UNIX
+(i)
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ uname -r
+6.2.0-37-generic
+
+(ii)
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ uname -a
+Linux darshan-Swift-SF314-43 6.2.0-37-generic #38~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Thu Nov  2 18:01:13 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+
+
+Ans.4) How would u get online help of cat command?
+
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ cat --help
+
+
+___________________________________________________________________
+
+
+Q-3 Write a shell script to execute following commands
+1. How would u display the hidden files?
+2. How delete directory with files?
+3. How would user can do copying?
+4. How would user can do deletion of files?
+--------------------------------------------
+
+As3)
+
+output :
+
+ans.1) hidden file is display with the [ '.' ]  dott keyword like ->  ".FileName.FileType"
+
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ ls -a
+.   As10.sh  As12.sh  As14.sh      As17_part2.sh  As2.sh  As6.sh  As9.sh   .one.txt
+..  As11.sh  As13.sh  As17_part1.sh  As1.sh      As5.sh  As8.sh  one.dtd  .two.txt
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ 
+
+
+ans.2) How delete directory with files?
+
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ rm -rf BCA
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ cd BCA
+bash: cd: BCA: No such file or directory
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ 
+
+
+ans.3) How would user can do copying?
+
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ cp .one.txt one.dat
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ cat one.dat
+This is some text here..
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$
+
+ans.4) How would user can do deletion of files?
+
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ rm one.dat two.dat
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ 
+
+__________________________________________________________________
+
+Q-4 Write a shell script to execute following commands
+1. Create the directories mydir.
+2. Create a file called text and store name,age and address in it.
+3. Display the contents of the file text on the screen.
+-----------------------------------------------------------------------------------
+
+1.
+
+darshan@LAPTOP-E7ADAJ3T:/mnt/c/Users/Darshan/Desktop/zerosize$ mkdir mkdir
+
+2.
+
+darshan@LAPTOP-E7ADAJ3T:/mnt/c/Users/Darshan/Desktop/zerosize$ cat > text.txt
+Name : Prajapati Darshan
+Age : 18
+Address : Saraspur
+
+3.
+
+darshan@LAPTOP-E7ADAJ3T:/mnt/c/Users/Darshan/Desktop/zerosize$ cat text.txt
+Name : Prajapati Darshan
+Age : 18
+Address : Saraspur
+
+___________________________________________________________________
+
+Q-6 Write a shell script to remove the zero sized file from the current directory
+-----------------------------------------------------------------------------------
+
+#!/bin/sh
+if [ -d $zerosize ]
+then
+for i in `find $zerosize -size 0`
+do
+rm $i
+echo "File removed successfullly"
+done
+else
+echo "Plz provide Directory"
+fi
+
+OUTPUT::
+
+darshan@LAPTOP-E7ADAJ3T:/mnt/c/Users/Darshan/Desktop/zerosize$ sh darshan.sh
+File removed successfullly
+File removed successfullly
+
+___________________________________________________________________________
+
+Q-7 Write a shell script to display the name of all the executable file from the current 
+directory.
+----------------------------------------------------------------
+
+#!/bin/bash
+for file in *
+do
+  if [ -x "$file" ]
+  then
+    echo "$file"
+  fi
+done
+
+OUTPUT::
+
+darshan@LAPTOP-E7ADAJ3T:/mnt/c/Users/Darshan/Desktop/zerosize$ sh darshan.sh
+darshan.sh
+mkdir
+text.txt
+three.txt
+
+______________________________________________________________________
+
+
+Q-8 Write a shell script that will display welcome message according to time.
+
+---------------------------------------------------------------------------
+
+#!/bin/bash
+hour=$(date +%H)
+if [ $hour -lt 12 ]; then
+ echo "Good morning!"
+elif [ $hour -lt 16 ]; then
+ echo "Good afternoon!"
+elif [ $hour -lt 20 ]; then
+ echo "Good evening!"
+else
+   echo "Good night!"
+fi
+
+OUTPUT::
+
+darshan@LAPTOP-E7ADAJ3T:/mnt/c/Users/Darshan/Desktop$ sh darshan.sh
+Good evening!
+
+_____________________________________________________________________________
+
+Q-9 Write a shell script that takes a filename from the command line and checks whether 
+the file is an ordinary file or not.
+If it is an ordinary file then it should display the contents of the file.
+If it is not an ordinary file then script should display the message:
+“ File does not exist or is not ordinary, cannot display.
+---------------------------------------------------------------------------
+
+#!/bin/bash
+echo "enter file name"
+read filename
+if [ -f "$filename" ]
+then
+   cat "$filename"
+else
+   echo "File does not exist or is not ordinary, cannot display."
+fi
+
+OUTPUT::
+
+darshan@LAPTOP-E7ADAJ3T:/mnt/c/Users/Darshan/Desktop/zerosize$ sh darshan.sh
+enter file name
+text.txt
+Name : Prajapati Darshan
+Age : 18
+Address : Saraspur
+
+___________________________________________________________________
+
+Q-10 Write a shell script that takes a filename from the user and checks whether it is a 
+directory file or not.
+If it is a directory, then the script should display the contents of 
+the directory.
+If it is not a directory file then script should display the message:
+“File is not a directory file “
+----------------------------------------------------------------------------
+
+#!/bin/bash
+echo "enter directory name"
+read dir
+if [ -d "$dir" ]
+then
+    ls "$dir"
+else
+   echo "Directory does not exist."
+fi
+
+OUTPUT::
+
+darshan@LAPTOP-E7ADAJ3T:/mnt/c/Users/Darshan/Desktop/zerosize$ sh darshan.sh
+enter directory name
+mk
+text.txt  three.txt
+
+______________________________________________________________________________________
+
+
+Q-11 Write a shell script that takes a filename as an argument and checks if the file 
+exists and is executable.
+If the file is executable then the shell script should display the message:
+“File exists”
+If the file does not exists and is not executable then the script should
+display the message: “File does not exist or is not executable.”
+
+
+
+#!/bin/bash
+echo "enter filename"
+read file
+if [ -e $file -a -x $file ]
+then
+    echo "File is executable"
+else
+   echo "File is neither exist nor executable."
+fi
+
+OUTPUT::
+
+darshan@LAPTOP-E7ADAJ3T:/mnt/c/Users/Darshan/Desktop/zerosize$ sh darshan.sh
+enter filename
+text.txt
+File is executable
+
+______________________________________________________________________________________
+
+Q-12 Write a shell script that displays all subdirectories in current working directory
+------------------------------------------------------------------------------------
+
+As12)
+
+#!/bin/sh
+
+if [ -d `pwd` ]
+then
+        echo "`pwd` is current working Directory"
+        echo "Sub-directory is below"
+        for i in `ls */`
+        do
+                echo $i
+        done
+fi
+
+output :
+
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ nano As12.sh
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ sh As12.sh
+/home/darshan/Desktop/Darshan is current working Directory
+Sub-directory is below
+BCA/:
+MCA/:
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ 
+_____________________________________________________________________________
+
+Q-13 Write a shell script that accepts 2 filenames and checks if both exists; if both exist then 
+append the content of the second file into the first file.
+-------------------------------------------------------------
+
+#!/bin/bash
+echo "enter first filename"
+read file1
+echo "Enter second filename"
+read file2
+if [ -e $file1 -a -e $file2 ]
+then
+    cp $file1 $file2
+else
+   echo "File doest not exist."
+fi
+
+OUTPUT::
+
+darshan@LAPTOP-E7ADAJ3T:/mnt/c/Users/Darshan/Desktop/zerosize$ sh darshan.sh
+enter first filename
+text.txt
+Enter second filename
+three.txt
+darshan@LAPTOP-E7ADAJ3T:/mnt/c/Users/Darshan/Desktop/zerosize$ cat three.txt
+Name : Prajapati Darshan
+Age : 18
+Address : Saraspur
+
+_____________________________________________________________________
+
+Q.16) 16 Write a shell script that displays the following menu and acts accordingly.
+1. Concatenates two strings
+2. Renames a file
+3. Deletes a file.
+4. Copy the file to specific location
+
+
+Ans-16)
+#!/bin/sh
+echo “1. Concatenates two strings ”
+echo “2. Renames a file”
+echo “3. Deletes a file.”
+echo “4. Copy the file to specific location”
+echo “enter your choice”
+read ch
+case $ch in
+1) echo “enter first string”
+    read str1
+    echo “enter second string”
+    read str2
+    echo  "The concated strings are $str1$str2"
+;;
+2) echo “enter the old filename”
+     read ofn
+     echo “enter the new filename”
+     read nfn
+     mv $ofn $nfn
+    echo “file renamed”
+;;
+3) echo “enter the filename”
+    read fn
+    rm $fn
+    echo “file deleted”
+;;
+4) echo “enter the filename”
+     read fn
+GK=/home/darshan/Desktop/Darshan/GK.txt
+     cp $fn $GK   #you can change the specific path
+    echo “file copied”
+;;
+*)  echo “invalid choice”
+;;
+esac
+
+
+output :
+
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ nano As16.sh
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ sh As16.sh
+“1. Concatenates two strings ”
+“2. Renames a file”
+“3. Deletes a file.”
+“4. Copy the file to specific location”
+(ans.1)
+“enter your choice”
+1
+“enter first string”
+Linux
+“enter second string”
+Unix
+The concated strings are LinuxUnix
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ 
+
+(ans.2)
+“enter your choice”
+2
+“enter the old filename”
+1.dtd
+“enter the new filename”
+One.txt
+“file renamed”
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ 
+
+(ans.3)
+“enter your choice”
+3   
+“enter the filename”
+0Size.txt
+“file deleted”
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan
+
+(ans.4)
+“enter your choice”
+4
+“enter the filename”
+1.dtd
+“file copied”
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ 
+
+___________________________________________________________________
+
+
+Q.17 : Write a shell script that displays all hidden files in current directory.
+
+--------------------------------------------------------------
+
+As17)
+
+#!/bin/sh
+echo "Hidden files are below"
+echo "`ls .[a-z]*`"
+
+
+output :
+
+(i)
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ nano As17.sh
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ sh As17.sh
+Hidden files are below
+.one.txt
+.two.txt
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$
+
+(ii)
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ ls .[a-z]*
+.one.txt  .two.txt
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ 
+
+___________________________________________________________________
+
+Q.20 : Write a shell script to display grade of student from entered marks.
+
+----------------------------------------------------------------
+
+As20)
+
+#!/bin/sh
+echo "*****************"
+echo "Student Marksheet"
+echo "*****************"
+echo "Enter Operating System Marks:"
+read os
+echo "Enater C++ Marks:"
+read cpp
+echo "Enater Java Marks:"
+read java
+echo "*****************"
+total=`expr $os + $cpp + $java`
+echo "Total Marks:"$total
+percentage=`expr $total / 3`
+echo "Percentage:" $percentage %
+if [ $percentage -ge 60 ]
+then
+echo "Class: First Class Distinction"
+elif [ $percentage -ge 50 ]
+then
+echo "Class: First class"
+elif [ $percentage -ge 40 ]
+then
+echo "Class: Second class"
+else
+echo "Class: Fail"
+fi
+echo "*****************"
+
+
+output :
+
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ nano As20.sh
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ sh As20.sh
+*****************
+Student Marksheet
+*****************
+Enter Operating System Marks:
+76
+Enater C++ Marks:
+98
+Enater Java Marks:
+90
+*****************
+Total Marks:264
+Percentage: 88 %
+Class: First Class Distinction
+*****************
+darshan@darshan-Swift-SF314-43:~/Desktop/Darshan$ 
+
+___________________________________________________________________
+
+
